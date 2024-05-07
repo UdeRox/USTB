@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.25;
+
+import {ConfirmedOwner} from "@chainlink/contracts/src/v0.8/shared/access/ConfirmedOwner.sol";
+
 /**
  * @title Ustbc
  * @author Udeshika Perera
  */
-contract Ustbc {
+contract Ustbc is ConfirmedOwner {
+    constructor() ConfirmedOwner(msg.sender) {}
+
     ///Send an http request
     /// 1. See how much bought or how much buy,
     /// 2. if enough have mind USTBC
