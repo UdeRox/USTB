@@ -10,3 +10,6 @@
 [submodule "lib/openzeppelin-contracts"]
 	path = lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "rwa_ustd/lib/openzeppelin-contracts"]
+	path = rwa_ustd/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
