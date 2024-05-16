@@ -4,6 +4,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "types": ["node", "mocha", "chai", "ethers"],
     "strict": true,
     "skipLibCheck": true
   }
