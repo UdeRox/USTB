@@ -1,22 +1,14 @@
-import '../../process-polyfill';
+import {
+  RainbowKitProvider
+} from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import {
-  getDefaultConfig,
-  RainbowKitProvider,
-} from '@rainbow-me/rainbowkit';
-import { WagmiProvider } from 'wagmi';
-import {
-  mainnet,
-  polygon,
-  optimism,
-  arbitrum,
-  base,
-} from 'wagmi/chains';
-import {
-  QueryClientProvider,
   QueryClient,
+  QueryClientProvider,
 } from "@tanstack/react-query";
+import { WagmiProvider } from 'wagmi';
 import config from '../../config';
+import '../../process-polyfill';
 import ConnectWallet from './ConnectWallet';
 
 const queryClient = new QueryClient();
