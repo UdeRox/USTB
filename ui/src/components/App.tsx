@@ -1,4 +1,4 @@
-import './process-polyfill';
+import '../../process-polyfill';
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultConfig,
@@ -16,7 +16,7 @@ import {
   QueryClientProvider,
   QueryClient,
 } from "@tanstack/react-query";
-import config from './config';
+import config from '../../config';
 import Header from './Header';
 
 const queryClient = new QueryClient();
