@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import App from '../components/App';
+const pageTitle = "TBill homepage";
+---
+<BaseLayout pageTitle={pageTitle}>
+  <h2>Tbill Homepage</h2>
+  <App client:load />
+</BaseLayout>
