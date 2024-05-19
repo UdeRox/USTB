@@ -1,11 +1,10 @@
-import '../process-polyfill';
 import {
-  RainbowKitProvider
+    RainbowKitProvider
 } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import {
-  QueryClient,
-  QueryClientProvider,
+    QueryClient,
+    QueryClientProvider,
 } from "@tanstack/react-query";
 import { WagmiProvider } from 'wagmi';
 import config from '../config';
