@@ -1,7 +1,7 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-const Header = () => {
+const ConnectWallet = () => {
   return <ConnectButton />;
 };
 
-export default Header;
+export default ConnectWallet;

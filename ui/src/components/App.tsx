@@ -17,7 +17,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import config from '../../config';
-import Header from './Header';
+import ConnectWallet from './ConnectWallet';
 
 const queryClient = new QueryClient();
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-            <Header  />
+            <ConnectWallet  />
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
