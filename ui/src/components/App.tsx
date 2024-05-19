@@ -1,3 +1,4 @@
+import '../process-polyfill';
 import {
   RainbowKitProvider
 } from '@rainbow-me/rainbowkit';
@@ -7,8 +8,8 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { WagmiProvider } from 'wagmi';
-import config from '../../config';
-import '../../process-polyfill';
+import config from '../config';
+import '../process-polyfill';
 import ConnectWallet from './ConnectWallet';
 
 const queryClient = new QueryClient();
