@@ -1,1 +1,4 @@
 .history
+**/cache
+**/out
+**/lib
