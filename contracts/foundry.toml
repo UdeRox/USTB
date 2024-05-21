@@ -2,9 +2,9 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+evm_version = "cancun"
 
 remappings = [
-"@opensezppling/=lib/openzeppelin-contracts/",
 "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
 "ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/",
 "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
