@@ -3,3 +3,6 @@
 **/out
 **/lib
 **/.env
+
+/contracts/.idea
+/.idea
