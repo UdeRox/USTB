@@ -1,14 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-  const props = Astro.props
+import { Image } from "astro:assets";
+import USDT from "../assets/Images/USDT.webp";
+import TBILL from "../assets/Images/TBILL.png";
+const props = Astro.props;
 
 const pageTitle = "";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="flex flex-col my-28 items-center">
-    <div class="bg-white p-4 rounded-md shadow-md">
+  <div class="flex flex-col  my-28 items-center">
+    <div class="bg-white rounded-3xl p-4  shadow-md">
       <div class="flex justify-between items-center">
         <h1 class="text-4xl text-black font-bold mb-4">Swap</h1>
         <span
@@ -17,76 +19,73 @@ const pageTitle = "";
           ⚡ Instant ~30s Settlement
         </span>
       </div>
-    
-<div class="border rounded-2xl border-1 p-2 my-5">
 
-  <div class="flex items-center justify-between mb-2">
-    <span class="text-sm text-gray-500">Balance: 0.0000 USDC</span>
-  </div>
+      <div class="border rounded-2xl border-1 p-2 my-5">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm text-gray-500">Balance: 0.0000 USDC</span>
+        </div>
+        <!-- <Image src={USDT} alt="USDT"  width="50" height="50" />  -->
 
+        <div class="flex items-center mb-2">
+          <input
+            type="number"
+            class="w-full rounded-l-md text-2xl text-black font-bold py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            value="1"
+          />
+          <span class="bg-gray-200 px-3 py-2 rounded-md text-gray-700">Max</span
+          >
+          <select
+            class="ml-2 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option> USDT</option>
+          </select>
+        </div>
+      </div>
 
+      <div class="flex flex-1 justify-center item-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="text-black rounded-full p-1 border border-1"
+          width="3em"
+          height="3em"
+          viewBox="0 0 28 28"
+          {...props}
+        >
+          <path
+            fill="currentColor"
+            d="m8.352 4.011l.058-.007L8.5 4l.075.003l.126.017l.111.03l.111.044l.098.052l.104.074l.082.073l5.5 5.5a1 1 0 0 1-1.32 1.497l-.094-.083L9.5 7.415V23a1 1 0 0 1-1.993.117L7.5 23V7.415l-3.793 3.792a1 1 0 0 1-1.32.083l-.094-.083a1 1 0 0 1-.083-1.32l.083-.094l5.5-5.5a1 1 0 0 1 .112-.097l.11-.071l.114-.054l.105-.035zM19.5 4a1 1 0 0 1 .993.883L20.5 5v15.585l3.793-3.792l.094-.083a1 1 0 0 1 1.403 1.403l-.083.094l-5.5 5.5l-.044.041l-.068.056l-.11.071l-.114.054l-.105.035l-.117.025l-.09.01h-.118l-.06-.006l-.114-.02l-.109-.033l-.081-.034l-.098-.052l-.096-.067a1 1 0 0 1-.09-.08l-5.5-5.5l-.083-.094a1 1 0 0 1 0-1.226l.083-.094l.094-.083a1 1 0 0 1 1.226 0l.094.083l3.793 3.792V5l.007-.117A1 1 0 0 1 19.5 4"
+          ></path>
+        </svg>
+      </div>
 
-  <div class="flex  items-center mb-2">
-    <input
-      type="number"
-      class="w-full rounded-l-md text-black font-bold   py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-      value="1"
-    />
-    <span class="bg-gray-200 px-3 py-2 rounded-md text-gray-700">Max</span
-    >
-    <select
-      class="ml-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    >
-      <option>USDT</option>
-    </select>
-  </div>
-
-
-</div>
-
-
-<div class="flex flex-1 justify-center item-center">
-
-
-  <svg xmlns="http://www.w3.org/2000/svg" class="text-black rounded-full p-1 border border-1  " width="3em" height="3em" viewBox="0 0 28 28" {...props}>
-    <path fill="currentColor" d="m8.352 4.011l.058-.007L8.5 4l.075.003l.126.017l.111.03l.111.044l.098.052l.104.074l.082.073l5.5 5.5a1 1 0 0 1-1.32 1.497l-.094-.083L9.5 7.415V23a1 1 0 0 1-1.993.117L7.5 23V7.415l-3.793 3.792a1 1 0 0 1-1.32.083l-.094-.083a1 1 0 0 1-.083-1.32l.083-.094l5.5-5.5a1 1 0 0 1 .112-.097l.11-.071l.114-.054l.105-.035zM19.5 4a1 1 0 0 1 .993.883L20.5 5v15.585l3.793-3.792l.094-.083a1 1 0 0 1 1.403 1.403l-.083.094l-5.5 5.5l-.044.041l-.068.056l-.11.071l-.114.054l-.105.035l-.117.025l-.09.01h-.118l-.06-.006l-.114-.02l-.109-.033l-.081-.034l-.098-.052l-.096-.067a1 1 0 0 1-.09-.08l-5.5-5.5l-.083-.094a1 1 0 0 1 0-1.226l.083-.094l.094-.083a1 1 0 0 1 1.226 0l.094.083l3.793 3.792V5l.007-.117A1 1 0 0 1 19.5 4" />
-  </svg>
-  
-
-</div>
-
-<div class="border rounded-2xl border-1 p-2 my-5">
-
-  <div class="flex items-center  justify-between mb-2">
-    <span class="text-sm text-gray-500">Balance: 0.0000 USDC</span>
-  </div>
-  <div class="flex items-center mb-2">
-    <input
-      type="number"
-      class="w-full rounded-l-md text-black font-bold py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-      value="1"
-      readonly
-    />
-    <select
-      class="ml-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    >
-      <option>TBILL</option>
-    </select>
-  </div>
-
-
-</div>
+      <div class="border rounded-2xl border-1 p-2 my-5">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm text-gray-500">Balance: 0.0000 USDC</span>
+        </div>
+        <div class="flex items-center mb-2">
+          <input
+            type="number"
+            class="w-full rounded-l-md text-2xl text-black font-bold py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            value="1"
+            readonly
+          />
+          <select
+            class="ml-2 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option> TBILL</option>
+          </select>
+        </div>
+      </div>
+      <!-- <Image src={TBILL} alt="USDT" />  -->
 
 
       <div class="flex justify-between items-center mb-2">
         <span class="text-sm text-gray-500">Max. Slippage</span>
         <span class="text-sm text-black font-bold">0.1 %</span>
-     
       </div>
       <div class="flex justify-between items-center mb-4">
         <span class="text-sm text-gray-500">Exchange rate</span>
-        <span class="text-sm text-black font-bold">1 USDT = 1 TBILL</span
-        >
+        <span class="text-sm text-black font-bold">1 USDT = 1 TBILL</span>
       </div>
       <div class="flex justify-between items-center mb-4">
         <span class="text-sm text-gray-500">Price Impact</span>
@@ -101,12 +100,12 @@ const pageTitle = "";
       </div>
 
       <div class="flex flex-1 item-center py-4 justify-center">
-        <button class="bg-gradient-to-r rounded-2xl from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">
-          Swap Now 
-      </button>
+        <button
+          class="bg-gradient-to-r rounded-2xl from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-white font-bold py-2 px-4 transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          Swap Now
+        </button>
       </div>
     </div>
   </div>
 </BaseLayout>
-
-
