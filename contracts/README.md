@@ -64,3 +64,7 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+
+need to install Deno 
+npm i @chainlink/functions-toolkit
