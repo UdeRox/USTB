@@ -1,13 +1,70 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-// import BlogPost from "../components/BlogPost.astro";
 const pageTitle = "Swap";
-// const allPosts = await Astro.glob("../pages/posts/*.md");
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>This page for Swap.</p>
-  <!-- <ul>
-    {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
-  </ul> -->
+  <div class="flex flex-col items-center">
+    <h1 class="text-2xl font-bold mb-4">Swap</h1>
+    <div class="bg-white p-4 rounded-md shadow-md">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm text-gray-500">Balance: 0.0000  USDC</span>
+        <span class="text-sm font-bold">Instant ~30s Settlement</span>
+      </div>
+      <div class="flex items-center mb-2">
+        <input
+          type="number"
+          class="w-full rounded-l-md border-r-0 border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          value="1"
+        />
+        <span class="bg-gray-200 px-3 py-2 rounded-r-md text-gray-700">Max</span
+        >
+        <select
+          class="ml-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        >
+          <option>USDT</option>
+        </select>
+      </div>
+      <div class="flex items-center mb-4">
+  <input
+  type="number"
+  class="w-full rounded-l-md border-r-0 border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+  value="1.000990"
+  readonly
+/>
+<span class="bg-gray-200 px-3 py-2 rounded-r-md text-gray-700">TBILL</span>
+
+      </div>
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm text-gray-500">Max. Slippage</span>
+        <span class="text-sm font-bold">0.1 %</span>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >Edit</button
+        >
+      </div>
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-sm text-gray-500">Exchange rate</span>
+        <span class="text-sm text-black font-bold">1 USDT = 1.000099 TBILL</span>
+      </div>
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-sm text-gray-500">Price Impact</span>
+        <span class="text-sm text-black font-bold">0.00%</span>
+      </div>
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-sm text-gray-500">Trade Routed Through</span>
+        <span class="text-sm text-black font-bold">Curve</span>
+      </div>
+      <div class="text-sm text-gray-500">
+        *A whitelisted address is mandatory
+      </div>
+
+      <div class="flex flex-1 item-center">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >Swap Now</button
+        >
+      </div>
+    </div>
+  </div>
 </BaseLayout>
