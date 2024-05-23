@@ -19,3 +19,6 @@
 [submodule "contracts/lib/erc4626-tests"]
 	path = contracts/lib/erc4626-tests
 	url = https://github.com/a16z/erc4626-tests
+[submodule "TBill"]
+	path = TBill
+	url = https://github.com/tashunc/TBill
