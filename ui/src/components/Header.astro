@@ -4,12 +4,24 @@ import Navigation from "./Navigation.astro";
 import ThemeIcon from "./ThemeIcon.astro";
 import ConnectWallet from './ConnectWallet';
 ---
+<header class="py-4">
+    <nav class="container mx-auto flex items-center justify-between">
 
-<header>
-    <nav>
-        <ConnectWallet client:load />
-        <Hamburger />
-        <ThemeIcon />
-        <Navigation />
+        <a href="/" class="hidden md:flex">
+            <div class="flex rounded-3xl items-center mb-2">
+                <img src="https://firebasestorage.googleapis.com/v0/b/chainlinkproject-57533.appspot.com/o/TBILL_LOGO-removebg-preview.png?alt=media&token=f65e84c9-64aa-4c47-acaf-4d4f05192995" alt="TokenRWA" class="w-10 h-10 mr-2">
+                <span class="text-2xl font-bold">TokenRWA</span>
+            </div>
+        </a>
+        
+
+        <div class="flex items-center">
+            <Hamburger />
+            <Navigation />
+        </div>
+        <div class="flex items-center  ">
+            <!-- <ThemeIcon class="mx-2 p-2 " /> -->
+            <ConnectWallet class="ml-4" client:load />
+        </div>
     </nav>
 </header>
