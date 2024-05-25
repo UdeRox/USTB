@@ -1,0 +1,67 @@
+---
+// src/components/TBILLExplanation.astro
+
+import TokenIcon from "../../assets/Images/tokenIcon.png";
+import TreasuryIcon from "../../assets/Images/TrasuryIcon.png";
+import SaveMoneyIcon from "../../assets/Images/SaveMoneyIcon.png";
+---
+
+<div class="bg-gray-100 my-10 py-24 px-10 rounded-lg shadow-md">
+
+  <div class="flex flex-col justify-center pb-10 items-center">
+
+    <h2 class="text-3xl font-bold  text-gray-700 mb-4">
+      What does it essentially mean by holding TBILL?
+    </h2>
+    <p class="mb-4 text-gray-400">
+      Holding 1 TBILL is equivalent to holding 1 USD net-asset value (NAV) of
+      short-term U.S. treasuries, plus receiving daily interest, which is via
+      rebasing mechanism on-chain.
+    </p>
+  
+
+  </div>
+
+
+  <div class="flex flex-wrap text-2xl text-gray-500 justify-center max-md:flex-col max-md:gap-4 items-center">
+    <div class="flex text-2xl justify-center bg-white p-6 rounded-3xl px-16 items-center mr-4">
+      <div
+        class="w-10 h-10 rounded-full  flex items-center justify-center text-white"
+      >
+        <!-- <i class="fas fa-circle"></i> -->
+        <img src={TokenIcon.src} alt="TokenIcon">
+      </div>
+      <span class="ml-2 font-bold">Holding 1 TBILL</span>
+    </div>
+
+    <div class="p-6 bg-white px-8 font-bold text-2xl rounded-full">=</div>
+
+    <div class="flex bg-white p-6 rounded-3xl px-8 items-center mx-4">
+      <div
+        class="w-10 h-10 rounded-md  flex items-center justify-center text-white"
+      >
+        <!-- <i class="fas fa-dollar-sign"> -->
+          <img src={TreasuryIcon.src} alt="TokenIcon">
+        <!-- </i> -->
+
+      </div>
+      <span class="ml-2 font-bold">Holding $1.00 worth of U.S. Treasuries</span>
+    </div>
+
+    <div class="p-6 bg-white px-8 font-bold text-2xl rounded-full">+</div>
+
+    <div class="flex bg-white p-6 rounded-3xl px-8 items-center mx-4">
+      <div
+        class="w-10 h-10 rounded-md flex items-center justify-center text-white"
+      >
+        <i class="fas fa-plus">
+          <img src={SaveMoneyIcon.src} alt="TokenIcon">
+        </i>
+      </div>
+      <span class="ml-2 font-bold">Daily Interest</span>
+    </div>
+  </div>
+
+
+
+</div>

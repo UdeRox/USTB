@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BuySide from "../assets/Images/BuySide.png";
+import ReedemSide from "../assets/Images/ReedemSide.png";
+const props = Astro.props;
+
+const pageTitle = "";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-600 mb-4">
+      Convert USDC into TBILL Token (Buy Token)
+    </h2>
+    <p class="mt-8 text-gray-400">
+      Images represent the buy and redeem sides of a token transaction process,
+      involving the conversion between USDC (a USD-backed stablecoin) and TBILL
+      tokens.
+    </p>
+
+    <img src={BuySide.src} class="rounded-3xl" alt="Buy Token " />
+    <!-- <img src="https://example.com/buy-side.png" alt="Buy Token" class="mx-auto mb-4"> -->
+    <ol class="list-decimal py-8 px-4 pl-6">
+      <li class="mb-2">
+        <span class="font-bold">Investor:</span> The investor deposits USDC to initiate
+        the process.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">TBILL Smart Contract:</span> The TBILL smart contract
+        mints new TBILL tokens based on the USDC amount.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Bond Market:</span> The USDC is converted into TBILL,
+        which represents the bond market.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Off Chain Custody Vault:</span> The TBILL is then
+        converted back to USDC and held in an off-chain custody vault.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Token Issuer:</span> The Token Issuer receives the
+        USDC.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Treasury Account:</span> The USDC is held in the
+        Treasury Account.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Investor:</span> The investor receives the TBILL
+        tokens.
+      </li>
+    </ol>
+  </div>
+  <div class="bg-gray-100 p-8 rounded-lg shadow-md mt-8">
+    <h2 class="text-2xl text-gray-600 font-bold mb-4">
+      Convert TBILL Token into USDC (Redeem Token)
+    </h2>
+    <img src={ReedemSide.src} class="rounded-3xl" alt="Sell Side" />
+    <!-- <img src="https://example.com/redeem-side.png" alt="Redeem Token" class="mx-auto mb-4"> -->
+    <ol class="list-decimal py-8 px-4 pl-6">
+      <li class="mb-2">
+        <span class="font-bold">Investor:</span> The investor sends the TBILL tokens
+        to initiate the redemption process.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Token Issuer:</span> The Token Issuer receives the
+        TBILL tokens.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Treasury Account:</span> The TBILL tokens are held
+        in the Treasury Account.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Off Chain Custody Vault:</span> The USDC is sent
+        from the off-chain custody vault.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Bond Market:</span> The TBILL is converted back to
+        USDC, representing the bond market.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">TBILL Smart Contract:</span> The TBILL smart contract
+        burns the TBILL tokens to facilitate the redemption.
+      </li>
+      <li class="mb-2">
+        <span class="font-bold">Investor:</span> The investor receives the USDC.
+      </li>
+    </ol>
+  </div>
+</BaseLayout>

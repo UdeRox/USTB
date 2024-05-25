@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ItemCards from '../components/MainPageCompoenets/ItemCards.astro';
+import HoldingTbillInfo from '../components/MainPageCompoenets/HoldingTbillInfo.astro';
+import TotalSupply from '../components/MainPageCompoenets/TotalSupply.astro';
+
 const pageTitle = "";
 ---
 <BaseLayout pageTitle={pageTitle}>
@@ -17,6 +20,9 @@ const pageTitle = "";
     </div>
   </header>
 
+
+  <HoldingTbillInfo />
+  <TotalSupply  />
   <ItemCards />
 
 </BaseLayout>
