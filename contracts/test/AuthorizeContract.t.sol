@@ -13,6 +13,8 @@ contract TBillTest is Test {
     address private initialHolder;
     address private executor;
     address private functionsRouter;
+    uint64 private subId;
+    bytes32 private donId;
 
     function setUp() public {
         owner = vm.addr(1);
@@ -21,7 +23,7 @@ contract TBillTest is Test {
         vm.prank(executor);
         tBill = new TBill(owner);
         vm.prank(executor);
-        authoritativeContract = new AuthorizeContract(address(tBill), owner, functionsRouter);
+        authoritativeContract = new AuthorizeContract(address(tBill), owner, functionsRouter, subId, donId);
     }
 
     function test_PausedContract() public {
