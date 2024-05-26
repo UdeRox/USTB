@@ -2,4 +2,4 @@
 
 .PHONY: deploy
 
-deploy :; forge script script/AuthorizeContract.s.sol --sender 0xC6D6D94d4c05C7CbEDA4049135cB56e56749cC03 --account defaultKey
+deploy :; forge script script/AuthorizeContract.s.sol --private-key ${PRIVATE_KEY} --rpc-url ${SEPOLIA_RPC_URL} --etherscan-api-key ${ETHERSCAN_API_KEY} --verify --broadcast
