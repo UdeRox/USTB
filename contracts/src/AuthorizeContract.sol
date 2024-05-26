@@ -3,24 +3,25 @@ pragma solidity ^0.8.25;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import {OracleLib, AggregatorV3Interface} from "./libraries/OracleLib.sol";
-import {FunctionsRequest} from "@chainlink/contracts/v0.8/functions/dev/v1_0_0/libraries/FunctionsRequest.sol";
-import {FunctionsClient} from "@chainlink/contracts/v0.8/functions/dev/v1_0_0/FunctionsClient.sol";
-import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
+import { OracleLib, AggregatorV3Interface } from "./libraries/OracleLib.sol";
+import { FunctionsRequest } from "@chainlink/contracts/v0.8/functions/dev/v1_0_0/libraries/FunctionsRequest.sol";
+import { FunctionsClient } from "@chainlink/contracts/v0.8/functions/dev/v1_0_0/FunctionsClient.sol";
+import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 import "./TBill.sol";
 
 contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
     using FunctionsRequest for FunctionsRequest.Request;
     using OracleLib for AggregatorV3Interface;
     using Strings for uint256;
+
     TBill private tBillContract;
-    ERC20 USDC_Contract =
-        ERC20(address(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48));
+    ERC20 USDC_Contract = ERC20(address(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48));
 
     enum MintOrRedeem {
         mint,
         redeem
     }
+
     struct TbillRequest {
         uint256 amountOfToken;
         address requester;
@@ -29,8 +30,7 @@ contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
 
     uint32 private constant GAS_LIMIT = 300_000;
     uint64 immutable i_subId;
-    mapping(bytes32 requestId => TbillRequest request)
-        private s_requestIdToRequest;
+    mapping(bytes32 requestId => TbillRequest request) private s_requestIdToRequest;
 
     error TBill__NotEnoughCollateral();
 
@@ -51,7 +51,10 @@ contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
         address _functionsRouter,
         uint64 _subId,
         bytes32 _donId
-    ) Ownable(owner) FunctionsClient(_functionsRouter) {
+    )
+        Ownable(owner)
+        FunctionsClient(_functionsRouter)
+    {
         tBillContract = TBill(_tBillContract);
         s_donID = _donId;
         i_subId = _subId;
@@ -61,9 +64,7 @@ contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
         s_mintSource = _sourcCode;
     }
 
-    function AuthorizeMint(
-        uint256 amountOfTokensToMint
-    ) external onlyOwner whenNotPaused returns (bytes32 requestId) {
+    function AuthorizeMint(uint256 amountOfTokensToMint) external onlyOwner whenNotPaused returns (bytes32 requestId) {
         //@notice This logic must implement
         // if (
         //     _getCollateralRatioAdjustedTotalBalance(amount) >
@@ -77,11 +78,7 @@ contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
 
         // Send the request and store the request ID
         requestId = _sendRequest(req.encodeCBOR(), i_subId, GAS_LIMIT, s_donID);
-        s_requestIdToRequest[requestId] = TbillRequest(
-            amountOfTokensToMint,
-            msg.sender,
-            MintOrRedeem.mint
-        );
+        s_requestIdToRequest[requestId] = TbillRequest(amountOfTokensToMint, msg.sender, MintOrRedeem.mint);
         return requestId;
     }
 
@@ -108,17 +105,25 @@ contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
     function fulfillRequest(
         bytes32 requestId,
         bytes memory response,
-        bytes memory /**err**/
-    ) internal override whenNotPaused {
+        bytes memory
+    )
+        /**
+         * err*
+         */
+        internal
+        override
+        whenNotPaused
+    {
         if (s_requestIdToRequest[requestId].mintOrRedeem == MintOrRedeem.mint) {
             s_portfolioBalance = uint256(bytes32(response));
-            tBillContract.mint(
-                s_requestIdToRequest[requestId].requester,
-                s_requestIdToRequest[requestId].amountOfToken
-            );
+            tBillContract.mint(s_requestIdToRequest[requestId].requester, s_requestIdToRequest[requestId].amountOfToken);
             // _mintFulFillRequest(requestId, response);
         } else {
             // _redeemFulFillRequest(requestId, response);
         }
+    }
+
+    function getPortfolioBalance() public view returns (uint256) {
+        return s_portfolioBalance;
     }
 }
