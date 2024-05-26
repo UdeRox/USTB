@@ -28,10 +28,10 @@ contract AuthorizeContractScript is Script {
             address(tBillContract),
             msg.sender,
             functionsRouter,
-            mintSource,
             subId,
             donId
         );
+        authorizeContract.setMintSouceCode(mintSource);
         vm.stopBroadcast();
     }
 }

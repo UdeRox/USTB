@@ -49,14 +49,16 @@ contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
         address _tBillContract,
         address owner,
         address _functionsRouter,
-        string memory _mintSource,
         uint64 _subId,
         bytes32 _donId
     ) Ownable(owner) FunctionsClient(_functionsRouter) {
         tBillContract = TBill(_tBillContract);
         s_donID = _donId;
-        s_mintSource = _mintSource;
         i_subId = _subId;
+    }
+
+    function setMintSouceCode(string memory _sourcCode) external onlyOwner {
+        s_mintSource = _sourcCode;
     }
 
     function AuthorizeMint(
