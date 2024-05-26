@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.25;
 
-import {Test, console} from "forge-std/Test.sol";
+import { Test, console } from "forge-std/Test.sol";
 import "../src/TBill.sol";
 import "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
-
 
 contract TBillTest is Test {
     TBill private tBill;
@@ -26,16 +25,14 @@ contract TBillTest is Test {
         vm.prank(owner);
         vm.expectRevert(bytes4(keccak256("EnforcedPause()")));
         tBill.mint(initialHolder, 1000);
-
     }
 
     function test_UnAuthorized() public {
         vm.prank(owner);
         tBill.pause();
         vm.prank(executor);
-        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)",executor));
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", executor));
         tBill.mint(initialHolder, 1000);
-
     }
 
     function testFuzz_UnPausedContract(uint256 x) public {
