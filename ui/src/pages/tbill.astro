@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import USDT from "../assets/Images/USDT.webp";
 import TBILL from "../assets/Images/TBILL.png";
+import DisplayAvailableUSD from "../components/swapComponents/DisplayAvailableUSD";
 const props = Astro.props;
 
 const pageTitle = "";
@@ -19,7 +20,7 @@ const pageTitle = "";
           ⚡ Instant ~30s Settlement
         </span>
       </div>
-
+      <DisplayAvailableUSD client:load />
       <div class="border rounded-2xl border-1 p-2 my-5">
         <div class="flex items-center justify-between mb-2">
           <span class="text-sm text-gray-500">Balance: 0.0000 USDC</span>

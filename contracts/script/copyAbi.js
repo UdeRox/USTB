@@ -3,7 +3,7 @@ const path = require('path');
 
 // Paths
 const artifactPath = path.join(__dirname, '../out/AuthorizeContract.sol/AuthorizeContract.json');
-const uiPath = path.join(__dirname, '../../ui/abi');
+const uiPath = path.join(__dirname, '../../ui/src/abi');
 const destPath = path.join(uiPath, 'AuthorizeContract.json');
 
 // Ensure the destination directory exists
