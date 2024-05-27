@@ -27,6 +27,7 @@ contract AuthorizeContractScript is Script {
         AuthorizeContract authorizeContract =
             new AuthorizeContract(address(tBillContract), msg.sender, functionsRouter, subId, donId);
         authorizeContract.setMintSouceCode(mintSource);
+        // authorizeContract.setBaseCurrency(0xc0EaC85C595318B68b1Ce30A3E3160A245344452);
         vm.stopBroadcast();
     }
 }
