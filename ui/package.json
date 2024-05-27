@@ -30,6 +30,7 @@
     "web3": "^4.9.0"
   },
   "devDependencies": {
-    "@iconify/tailwind": "^1.1.1"
+    "@iconify/tailwind": "^1.1.1",
+    "@types/web3": "^1.2.2"
   }
 }

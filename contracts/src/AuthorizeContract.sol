@@ -118,7 +118,6 @@ contract AuthorizeContract is Ownable, Pausable {
 
         // Calculate 95% of the amount, assuming the token has 18 decimals
         uint256 mintAmount = (amount * 95) / 100;
-
         // Mint TBill tokens to the sender
         tBillContract.mint(msg.sender, mintAmount * 10 ** 18);
     }
