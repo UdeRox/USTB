@@ -4,7 +4,7 @@ import contractABI from "../../abi/AuthorizeContract.json";
 
 declare global {
   interface Window {
-    ethereum: unknown;
+    ethereum: any;
   }
 }
 
