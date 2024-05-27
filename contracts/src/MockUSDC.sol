@@ -18,4 +18,8 @@ contract MockUSDC is ERC20 {
     function burn(address account, uint256 amount) external {
         _burn(account, amount);
     }
+
+     function decimals() public view virtual override returns (uint8) {
+        return DECIMALS;
+    }
 }
