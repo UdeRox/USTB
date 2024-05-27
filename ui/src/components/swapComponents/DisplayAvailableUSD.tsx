@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Web3 from "web3";
 import contractABI from "../../abi/AuthorizeContract.json";
 
-declare global {
-  interface Window {
-    ethereum: any;
-  }
-}
+// declare global {
+//   interface Window {
+//     ethereum: any;
+//   }
+// }
 
 const DisplayAvailableUSD = () => {
   const [maxUSDSupply, setMaxUSDSupply] = useState<unknown>(null);
