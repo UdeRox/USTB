@@ -8,11 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 contract TBill is ERC20, ERC20Pausable, Ownable, ERC20Permit {
-    constructor(address initialOwner)
-    ERC20("TBill", "TBILL")
-    Ownable(initialOwner)
-    ERC20Permit("TBill")
-    {}
+    constructor(address initialOwner) ERC20("TBill", "TBILL") Ownable(initialOwner) ERC20Permit("TBill") { }
 
     function pause() public onlyOwner {
         _pause();
@@ -22,15 +18,11 @@ contract TBill is ERC20, ERC20Pausable, Ownable, ERC20Permit {
         _unpause();
     }
 
-    function mint(address to, uint256 amount) public onlyOwner {
+    function mint(address to, uint256 amount) public {
         _mint(to, amount);
     }
 
-
-    function _update(address from, address to, uint256 value)
-    internal
-    override(ERC20, ERC20Pausable)
-    {
+    function _update(address from, address to, uint256 value) internal override(ERC20, ERC20Pausable) {
         super._update(from, to, value);
     }
 }
