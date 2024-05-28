@@ -11,12 +11,11 @@ const BuyTBills = () => {
   const [accounts, setAccounts] = useState<string[]>([]);
   const [amount, setAmount] = useState<string>("");
   const [authorizeContractInstance, setAuthorizeContractInstance] =
-    useState<Web3.Contract | null>(null);
-  const [mockUSDCInstance, setMockUSDCInstance] =
-    useState<Web3.Contract | null>(null);
+    useState<any>(null);
+  const [mockUSDCInstance, setMockUSDCInstance] = useState<any>(null);
 
-  const authorizeContractAddress = "0xE1C149cD6999A50E3Eb186d277DfbFC8F2C5Bb3C"; // Replace with the actual contract address
-  const mockUSDCAddress = "0x34531bEC4c6f38D0d9d46AA85F30Ad312a417336"; // Replace with the actual MockUSDC contract address
+  const authorizeContractAddress = import.meta.env.PUBLIC_AUTHORIZED_CONTRACT; // Replace with the actual contract address
+  const mockUSDCAddress = import.meta.env.PUBLIC_MOCK_USDC_ADDRESS; // Replace with the actual MockUSDC contract address
 
   useEffect(() => {
     const initWeb3 = async () => {
@@ -59,7 +58,7 @@ const BuyTBills = () => {
 
     const amountToApprove = parseFloat(amount) * 1000000;
     await mockUSDCInstance.methods
-      .approve(authorizeContractAddress, amountToApprove)
+      .approve(authorizeContractAddress, amountToApprove.toString())
       .send({ from: accounts[0] });
   };
 
@@ -68,7 +67,7 @@ const BuyTBills = () => {
 
     const amountToSpend = parseFloat(amount) * 1000000;
     await authorizeContractInstance.methods
-      .buy(amountToSpend)
+      .buy(amountToSpend.toString())
       .send({ from: accounts[0] });
   };
 
