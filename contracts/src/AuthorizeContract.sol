@@ -119,7 +119,7 @@ contract AuthorizeContract is Ownable, Pausable {
         // Calculate 95% of the amount, assuming the token has 18 decimals
         uint256 mintAmount = (amount * 95) / 100;
         // Mint TBill tokens to the sender
-        tBillContract.mint(msg.sender, mintAmount * 10 ** 18);
+        tBillContract.mint(msg.sender, mintAmount * 10 ** 12);
     }
 
     function setMaxUSDSupply(uint256 _amount) external onlyOwner {

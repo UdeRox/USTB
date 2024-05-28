@@ -15,7 +15,7 @@ const BuyTBills = () => {
   const [mockUSDCInstance, setMockUSDCInstance] =
     useState<Web3.Contract | null>(null);
 
-  const authorizeContractAddress = "0xC7E7cE6996e14D5e3359Cb02EB3E44C56e0A3DEC"; // Replace with the actual contract address
+  const authorizeContractAddress = "0xE1C149cD6999A50E3Eb186d277DfbFC8F2C5Bb3C"; // Replace with the actual contract address
   const mockUSDCAddress = "0x34531bEC4c6f38D0d9d46AA85F30Ad312a417336"; // Replace with the actual MockUSDC contract address
 
   useEffect(() => {

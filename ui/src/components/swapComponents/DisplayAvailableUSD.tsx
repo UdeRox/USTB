@@ -11,7 +11,7 @@ import contractABI from "../../abi/AuthorizeContract.json";
 const DisplayAvailableUSD = () => {
   const [maxUSDSupply, setMaxUSDSupply] = useState<unknown>(null);
   //TODO: move to a global  variable
-  const contractAddress = "0xC7E7cE6996e14D5e3359Cb02EB3E44C56e0A3DEC";
+  const contractAddress = "0xE1C149cD6999A50E3Eb186d277DfbFC8F2C5Bb3C";
 
   useEffect(() => {
     const fetchMaxSupply = async () => {
