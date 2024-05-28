@@ -26,8 +26,8 @@ const BuyTBills = () => {
 
   const [transactionHash, setTransactionHash] = useState<string | null>(null); // New state for transaction hash
 
-  const [isApprove, setIsApprove] = useState<boolean>(false);
-  const [isBuyTbill, setIsBuyTbill] = useState<boolean>(false);
+  // const [isApprove, setIsApprove] = useState<boolean>(false);
+  // const [isBuyTbill, setIsBuyTbill] = useState<boolean>(false);
 
   const [usdcBalance, setUSDCBalance] = useState<number>(0);
   const [tbillBalance, setTBILLBalance] = useState<number>(0);
@@ -80,7 +80,7 @@ const BuyTBills = () => {
           );
           setMockUSDCInstance(mockUSDCContract);
           // Fetch balances initially
-          fetchBalances(accounts[0], web3Instance, authorizeContract, mockUSDCContract);
+          fetchBalances(accounts[0],  authorizeContract, mockUSDCContract);
 
         } catch (error) {
           console.error("Error initializing Web3:", error);
@@ -96,7 +96,9 @@ const BuyTBills = () => {
   }, []);
 
 
-  const fetchBalances = async (account: string, web3Instance: Web3, authorizeContract: any, mockUSDCContract: any) => {
+  // const fetchBalances = async (account: string, web3Instance: Web3, authorizeContract: any, mockUSDCContract: any) => {
+ 
+  const fetchBalances = async (account: string, authorizeContract: any, mockUSDCContract: any) => {
     if (!authorizeContract || !mockUSDCContract) return;
 
     try {
@@ -129,7 +131,7 @@ const BuyTBills = () => {
 
     try {
       setBuyTibillModal(true);
-      setIsApprove(true);
+      // setIsApprove(true);
       setIsLoading(true);
       const amountToApproveAndSpend = parseFloat(amount) * 1000000;
 
@@ -137,8 +139,8 @@ const BuyTBills = () => {
       await mockUSDCInstance.methods
         .approve(authorizeContractAddress, amountToApproveAndSpend.toString())
         .send({ from: accounts[0] });
-      setIsApprove(false);
-      setIsBuyTbill(true);
+      // setIsApprove(false);
+      // setIsBuyTbill(true);
       toast.success("Spending approved successfully");
 
 
@@ -150,7 +152,7 @@ const BuyTBills = () => {
       setTransactionHash(receipt.transactionHash); // Set the transaction hash
 
       toast.success("TBills purchased successfully");
-      setIsBuyTbill(false);
+      // setIsBuyTbill(false);
     } catch (error) {
       setTransactionSuccess(true);
       console.error("Error in approve and buy process:", error);
@@ -289,16 +291,6 @@ const BuyTBills = () => {
                       <button onClick={handleCloseModal} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-green-700 mr-2">
                         Close
                       </button>
-                      {transactionHash && (
-                        <a
-                          href={`https://sepolia.etherscan.io/tx/${transactionHash}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                        >
-                          Check on Etherscan
-                        </a>
-                      )}
                     </div>
                   </div>
 
