@@ -10,6 +10,8 @@ import { Toaster, toast } from "react-hot-toast";
 // Import the contract ABIs
 import authorizeContractABI from "../../abi/AuthorizeContract.json";
 import mockUSDCABI from "../../abi/MockUSDC.json";
+import TBill from "../../abi/TBill.json";
+
 
 const BuyTBills = () => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
@@ -46,8 +48,8 @@ const BuyTBills = () => {
   const authorizeContractAddress = import.meta.env.PUBLIC_AUTHORIZED_CONTRACT;
   const mockUSDCAddress = import.meta.env.PUBLIC_MOCK_USDC_ADDRESS;
 
-
-
+//  const  tbillContractAddress = import.meta.env.PUBLIC_TBILL_ADDRESS;
+const  tbillContractAddress = "0x47c38380d885CF94ac0a602531bdD55E29A584Ec";
 
   const handleCloseModal = () => {
     if (BuyTibillModal) {
@@ -80,7 +82,7 @@ const BuyTBills = () => {
           );
           setMockUSDCInstance(mockUSDCContract);
           // Fetch balances initially
-          fetchBalances(accounts[0],  authorizeContract, mockUSDCContract);
+          fetchBalances(accounts[0],  authorizeContract, mockUSDCContract, tbillContractAddress);
 
         } catch (error) {
           console.error("Error initializing Web3:", error);
@@ -98,8 +100,8 @@ const BuyTBills = () => {
 
   // const fetchBalances = async (account: string, web3Instance: Web3, authorizeContract: any, mockUSDCContract: any) => {
  
-  const fetchBalances = async (account: string, authorizeContract: any, mockUSDCContract: any) => {
-    if (!authorizeContract || !mockUSDCContract) return;
+  const fetchBalances = async (account: string, authorizeContract: any, mockUSDCContract: any, tbillContractAddress: any ) => {
+    if (!authorizeContract || !mockUSDCContract || !tbillContractAddress) return;
 
     try {
       // Inside the fetchBalances function
@@ -108,8 +110,9 @@ const BuyTBills = () => {
       const usdcBalance = parseFloat(usdcBalanceInBaseUnits) / 10 ** 6;
       setUSDCBalance(usdcBalance);
 
-      const tbillBalanceInBaseUnits = await authorizeContract.methods.balanceOf(account).call();
+      const tbillBalanceInBaseUnits = await tbillContractAddress.methods.balanceOf(account).call();
       const tbillBalance = parseFloat(tbillBalanceInBaseUnits) / 10 ** 6;
+      console.log(tbillBalance);
       setTBILLBalance(tbillBalance);
 
     } catch (error) {

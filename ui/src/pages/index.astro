@@ -4,6 +4,8 @@ import ItemCards from '../components/MainPageCompoenets/ItemCards.astro';
 import HoldingTbillInfo from '../components/MainPageCompoenets/HoldingTbillInfo.astro';
 import TotalSupply from '../components/MainPageCompoenets/TotalSupply.astro';
 
+import VimeoPlayer from '../components/MainPageCompoenets/VimeoPlayer.tsx';
+
 const pageTitle = "";
 ---
 <BaseLayout pageTitle={pageTitle}>
@@ -22,6 +24,11 @@ const pageTitle = "";
 
 
   <HoldingTbillInfo />
+
+
+
+  <VimeoPlayer videoId="951272971" />
+
   <TotalSupply  />
   <ItemCards />
 
