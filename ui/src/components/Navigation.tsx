@@ -42,7 +42,7 @@ const Navigation: React.FC = () => {
         <div className="md:hidden fixed bg-white flex flex-col justify-center align-center z-50 text-center h-screen w-screen flex flex-col mt-2 space-y-2">
           <a href="/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Home</a>
           <a href="/tbill" className="block px-4 py-2 hover:bg-gray-100">Buy</a>
-          <a href="/redeem" className="block px-4 py-2 hover:bg-gray-100">Sell</a>
+          <a href="/redeem" className="block px-4 py-2 hover:bg-gray-100">Redeem</a>
           <a href="/blog/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Blog</a>
           <a href="/aboutus/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">About Us</a>
         </div>
@@ -56,7 +56,7 @@ const Navigation: React.FC = () => {
           <button className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">TBILL</button>
           <div className="absolute hidden z-50 group-hover:block bg-white text-black mt-1 rounded shadow-lg border border-gray-200">
             <a href="/tbill" className="block px-4 py-2 hover:bg-gray-100">Buy</a>
-            <a href="/redeem" className="block px-4 py-2 hover:bg-gray-100">Sell</a>
+            <a href="/redeem" className="block px-4 py-2 hover:bg-gray-100">Redeem</a>
           </div>
         </div>
 
