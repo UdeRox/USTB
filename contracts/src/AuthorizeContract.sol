@@ -9,8 +9,8 @@ import {FunctionsClient} from "@chainlink/contracts/v0.8/functions/dev/v1_0_0/Fu
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import "./TBill.sol";
 
-// contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
-contract AuthorizeContract is Ownable, Pausable {
+contract AuthorizeContract is Ownable, FunctionsClient, Pausable {
+    // contract AuthorizeContract is Ownable, Pausable {
     using FunctionsRequest for FunctionsRequest.Request;
     using OracleLib for AggregatorV3Interface;
     using Strings for uint256;
@@ -44,24 +44,24 @@ contract AuthorizeContract is Ownable, Pausable {
     string s_mintSource;
     // string s_redeemSource;
 
+    bytes32 public s_lastRequestId;
     bytes32 s_donID;
     uint256 s_portfolioBalance;
     uint64 s_secretVersion;
     uint8 s_secretSlot;
+    //@note should devided by 100 to get the interset rate
+    uint256 private s_interestRate = 456;
 
     constructor(
         address _tBillContract,
         address owner,
-        address /**_functionsRouter**/,
-        uint64 /**_subId**/,
-        bytes32 /**_donId**/
-    )
-        // ) Ownable(owner) FunctionsClient(_functionsRouter) {
-        Ownable(owner)
-    {
+        address _functionsRouter,
+        uint64 _subId,
+        bytes32 _donId
+    ) Ownable(owner) FunctionsClient(_functionsRouter) {
         tBillContract = TBill(_tBillContract);
-        // s_donID = _donId;
-        // i_subId = _subId;
+        s_donID = _donId;
+        i_subId = _subId;
     }
 
     function setMintSouceCode(string memory _sourcCode) external onlyOwner {
@@ -143,10 +143,14 @@ contract AuthorizeContract is Ownable, Pausable {
         tBillContract.transfer(msg.sender, amount);
     }
 
-    function interest() public view returns (uint256) {
+    function setInterest(uint256 _amount) external {
+        s_interestRate = _amount;
+    }
+
+    function getInterest() public view returns (uint256) {
         //
         //check lock period and get interest with the chainlink functions
-        return 5;
+        return s_interestRate;
     }
 
     // function fulfillRequest(
@@ -172,10 +176,28 @@ contract AuthorizeContract is Ownable, Pausable {
     //         // _redeemFulFillRequest(requestId, response);
     //     }
     // }
+    string source = "";
 
-    function getPortfolioBalance() public view returns (uint256) {
-        return s_portfolioBalance;
+    function getPortfolioBalance() external returns (bytes32 requestId) {
+        // return s_portfolioBalance;
+        FunctionsRequest.Request memory req;
+        req.initializeRequestForInlineJavaScript(source);
+
+        s_lastRequestId = _sendRequest(
+            req.encodeCBOR(),
+            i_subId,
+            GAS_LIMIT,
+            s_donID
+        );
+
+        return s_lastRequestId;
     }
+
+    function fulfillRequest(
+        bytes32 requestId,
+        bytes memory response,
+        bytes memory err
+    ) internal virtual override {}
 }
 
 // Contract address for MockUSDC : 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9
