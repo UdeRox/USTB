@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
-import Loader from "./Loader";
+// import Loader from "./Loader";
 import ButtonSpinner from "./ButtonSpinner";
 
 import Web3 from "web3";
@@ -10,6 +10,8 @@ import { Toaster, toast } from "react-hot-toast";
 // Import the contract ABIs
 import authorizeContractABI from "../../abi/AuthorizeContract.json";
 import mockUSDCABI from "../../abi/MockUSDC.json";
+import TBill from "../../abi/TBill.json";
+
 
 const BuyTBills = () => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
@@ -26,8 +28,8 @@ const BuyTBills = () => {
 
   const [transactionHash, setTransactionHash] = useState<string | null>(null); // New state for transaction hash
 
-  // const [isApprove, setIsApprove] = useState<boolean>(false);
-  // const [isBuyTbill, setIsBuyTbill] = useState<boolean>(false);
+  const [isApprove, setIsApprove] = useState<boolean>(false);
+  const [isBuyTbill, setIsBuyTbill] = useState<boolean>(false);
 
   const [usdcBalance, setUSDCBalance] = useState<number>(0);
   const [tbillBalance, setTBILLBalance] = useState<number>(0);
@@ -46,8 +48,8 @@ const BuyTBills = () => {
   const authorizeContractAddress = import.meta.env.PUBLIC_AUTHORIZED_CONTRACT;
   const mockUSDCAddress = import.meta.env.PUBLIC_MOCK_USDC_ADDRESS;
 
-
-
+  //  const  tbillContractAddress = import.meta.env.PUBLIC_TBILL_ADDRESS;
+  const tbillContractAddress = "0x47c38380d885CF94ac0a602531bdD55E29A584Ec";
 
   const handleCloseModal = () => {
     if (BuyTibillModal) {
@@ -80,7 +82,7 @@ const BuyTBills = () => {
           );
           setMockUSDCInstance(mockUSDCContract);
           // Fetch balances initially
-          fetchBalances(accounts[0],  authorizeContract, mockUSDCContract);
+          fetchBalances(accounts[0], authorizeContract, mockUSDCContract, tbillContractAddress);
 
         } catch (error) {
           console.error("Error initializing Web3:", error);
@@ -97,9 +99,9 @@ const BuyTBills = () => {
 
 
   // const fetchBalances = async (account: string, web3Instance: Web3, authorizeContract: any, mockUSDCContract: any) => {
- 
-  const fetchBalances = async (account: string, authorizeContract: any, mockUSDCContract: any) => {
-    if (!authorizeContract || !mockUSDCContract) return;
+
+  const fetchBalances = async (account: string, authorizeContract: any, mockUSDCContract: any, tbillContractAddress: any) => {
+    if (!authorizeContract || !mockUSDCContract || !tbillContractAddress) return;
 
     try {
       // Inside the fetchBalances function
@@ -108,8 +110,9 @@ const BuyTBills = () => {
       const usdcBalance = parseFloat(usdcBalanceInBaseUnits) / 10 ** 6;
       setUSDCBalance(usdcBalance);
 
-      const tbillBalanceInBaseUnits = await authorizeContract.methods.balanceOf(account).call();
+      const tbillBalanceInBaseUnits = await tbillContractAddress.methods.balanceOf(account).call();
       const tbillBalance = parseFloat(tbillBalanceInBaseUnits) / 10 ** 6;
+      console.log(tbillBalance);
       setTBILLBalance(tbillBalance);
 
     } catch (error) {
@@ -131,7 +134,7 @@ const BuyTBills = () => {
 
     try {
       setBuyTibillModal(true);
-      // setIsApprove(true);
+      setIsApprove(true);
       setIsLoading(true);
       const amountToApproveAndSpend = parseFloat(amount) * 1000000;
 
@@ -139,8 +142,8 @@ const BuyTBills = () => {
       await mockUSDCInstance.methods
         .approve(authorizeContractAddress, amountToApproveAndSpend.toString())
         .send({ from: accounts[0] });
-      // setIsApprove(false);
-      // setIsBuyTbill(true);
+      setIsApprove(false);
+      setIsBuyTbill(true);
       toast.success("Spending approved successfully");
 
 
@@ -152,7 +155,7 @@ const BuyTBills = () => {
       setTransactionHash(receipt.transactionHash); // Set the transaction hash
 
       toast.success("TBills purchased successfully");
-      // setIsBuyTbill(false);
+      setIsBuyTbill(false);
     } catch (error) {
       setTransactionSuccess(true);
       console.error("Error in approve and buy process:", error);
@@ -266,7 +269,70 @@ const BuyTBills = () => {
       {BuyTibillModal ? (
         isLoading ? (
 
-          <Loader />
+          <div>
+
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+              <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+                <div className="flex justify-center items-center">
+                  <svg
+                    className="animate-spin h-16 w-16 text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                  </svg>
+                </div>
+
+                {/* <div className="text-xl my-6 text-center font-bold">
+                  Please approve the transaction of 10 USDC.
+                </div> */}
+
+
+                {isApprove ? (<div className="text-xl my-6 text-center font-bold">
+                
+                  Your {amount} USDC approval transaction is in progress...
+                </div>) : (<div className="text-xl my-6 text-center font-bold">
+                  Your {amount} USDC approval transaction was successfully Completed! ✅
+               
+                  {isBuyTbill! ? (<div className="text-xl my-6 text-center font-bold">
+               Please confirm, sending  {calculateNinetyFivePercent()} TBILL to your account, please wait...
+                </div>
+                ) : (
+                  <div className="text-xl my-6 text-center font-bold">
+                    {/* Please buy TBILL in exchange for 10 USDC. */}
+                  </div>
+                )}
+               
+                </div>)}
+
+
+
+
+          
+       
+
+
+
+
+
+              </div>
+            </div>
+
+
+          </div>
 
         ) : (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
