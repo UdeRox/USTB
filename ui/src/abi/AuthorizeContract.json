@@ -13,17 +13,17 @@
         "internalType": "address"
       },
       {
-        "name": "",
+        "name": "_functionsRouter",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "",
+        "name": "_subId",
         "type": "uint64",
         "internalType": "uint64"
       },
       {
-        "name": "",
+        "name": "_donId",
         "type": "bytes32",
         "internalType": "bytes32"
       }
@@ -90,6 +90,19 @@
   },
   {
     "type": "function",
+    "name": "getInterest",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "getMaxUSDSupply",
     "inputs": [],
     "outputs": [
@@ -107,25 +120,35 @@
     "inputs": [],
     "outputs": [
       {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "name": "requestId",
+        "type": "bytes32",
+        "internalType": "bytes32"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
-    "name": "interest",
-    "inputs": [],
-    "outputs": [
+    "name": "handleOracleFulfillment",
+    "inputs": [
       {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "name": "requestId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "response",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "err",
+        "type": "bytes",
+        "internalType": "bytes"
       }
     ],
-    "stateMutability": "view"
+    "outputs": [],
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -181,6 +204,19 @@
   },
   {
     "type": "function",
+    "name": "s_lastRequestId",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "sell",
     "inputs": [
       {
@@ -200,6 +236,19 @@
         "name": "_baseCurrencyContractAddress",
         "type": "address",
         "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setInterest",
+    "inputs": [
+      {
+        "name": "_amount",
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
     "outputs": [],
@@ -278,6 +327,32 @@
   },
   {
     "type": "event",
+    "name": "RequestFulfilled",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RequestSent",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
     "name": "Unpaused",
     "inputs": [
       {
@@ -302,6 +377,16 @@
   {
     "type": "error",
     "name": "ExpectedPause",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoInlineSecrets",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OnlyRouterCanFulfill",
     "inputs": []
   },
   {

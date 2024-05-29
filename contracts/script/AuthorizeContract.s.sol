@@ -17,7 +17,7 @@ contract AuthorizeContractScript is Script {
         vm.startBroadcast();
 
         // Deploy TBill contract
-        TBill tBillContract = new TBill(msg.sender);
+        // TBill tBillContract = new TBill(msg.sender);
 
         // Deploy AuthorizeContract
         uint64 subId = 2820;
@@ -25,7 +25,8 @@ contract AuthorizeContractScript is Script {
         string memory mintSource = vm.readFile(alpacaMintSource);
         address functionsRouter = 0xb83E47C2bC239B3bf370bc41e1459A34b41238D0;
         AuthorizeContract authorizeContract =
-            new AuthorizeContract(address(tBillContract), msg.sender, functionsRouter, subId, donId);
+            // new AuthorizeContract(address(tBillContract), msg.sender, functionsRouter, subId, donId);
+            new AuthorizeContract(0x47c38380d885CF94ac0a602531bdD55E29A584Ec, msg.sender, functionsRouter, subId, donId);
         authorizeContract.setMintSouceCode(mintSource);
         // authorizeContract.setBaseCurrency(0xc0EaC85C595318B68b1Ce30A3E3160A245344452);
         vm.stopBroadcast();

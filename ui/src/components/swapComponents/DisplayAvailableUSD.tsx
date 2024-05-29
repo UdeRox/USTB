@@ -10,6 +10,7 @@ import contractABI from "../../abi/AuthorizeContract.json";
 
 const DisplayAvailableUSD = () => {
   const [maxUSDSupply, setMaxUSDSupply] = useState<unknown>(null);
+  const [interestRate, setInterestRate] = useState<unknown>(null);
   //TODO: move to a global  variable
   //   const contractAddress = "0xE1C149cD6999A50E3Eb186d277DfbFC8F2C5Bb3C";
   const contractAddress = import.meta.env.PUBLIC_AUTHORIZED_CONTRACT;
@@ -23,6 +24,10 @@ const DisplayAvailableUSD = () => {
 
           const maxUSDinVault = await contract.methods.getMaxUSDSupply().call();
           setMaxUSDSupply(maxUSDinVault);
+
+          const interestRate: any = await contract.methods.getInterest().call();
+          //   setInterestRate(interestRate);
+          setInterestRate(parseInt(interestRate) / 100);
         } catch (err) {
           //TODO: error handling
           console.error("Error fetching baseCurrencyContract:", err);
@@ -36,7 +41,13 @@ const DisplayAvailableUSD = () => {
     fetchMaxSupply();
   }, []);
 
-  return <>{`Max USD available : ${maxUSDSupply ?? ""}`}</>;
+  return (
+    <>
+      {`Max USD available : ${
+        maxUSDSupply ?? ""
+      }, Interest rate : ${interestRate}%`}
+    </>
+  );
 };
 
 export default DisplayAvailableUSD;
