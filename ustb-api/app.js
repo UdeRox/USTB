@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import cors
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -7,6 +8,7 @@ const port = process.env.PORT || 3000;
 // In-memory data store
 let portfolio = 1000.0; // Initial portfolio value in USD
 
+app.use(cors()); // Enable CORS for all routes
 app.use(bodyParser.json());
 
 // GET /api/portfolio
