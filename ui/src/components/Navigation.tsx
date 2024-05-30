@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenTBILLButton, setIsOpenTBILLButton] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const toggleMenu = () => {
     console.log("Button clicked");
-    if (isOpen) {
-      setIsOpen(false);
-      console.log("Menu closed");
-    } else {
-      setIsOpen(true);
-      console.log("Menu opened");
+    setIsOpen(!isOpen);
+    console.log(`Menu ${isOpen ? "closed" : "opened"}`);
+  };
+
+  const handleMouseEnter = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
     }
+    timerRef.current = setTimeout(() => {
+      setIsOpenTBILLButton(true);
+    }, 300); // Delay in milliseconds
+  };
+
+  const handleMouseLeave = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      setIsOpenTBILLButton(false);
+    }, 300); // Delay in milliseconds
   };
 
   return (
@@ -41,8 +56,8 @@ const Navigation: React.FC = () => {
       {isOpen && (
         <div className="md:hidden fixed bg-white flex flex-col justify-center align-center z-50 text-center h-screen w-screen flex flex-col mt-2 space-y-2">
           <a href="/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Home</a>
-          <a href="/tbill" className="block px-4 py-2 hover:bg-gray-100">Buy</a>
-          <a href="/redeem" className="block px-4 py-2 hover:bg-gray-100">Redeem</a>
+          <a href="/tbill" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Buy</a>
+          <a href="/redeem" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Redeem</a>
           <a href="/blog/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Blog</a>
           <a href="/aboutus/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">About Us</a>
         </div>
@@ -52,12 +67,18 @@ const Navigation: React.FC = () => {
       <div className="hidden md:flex flex-col md:flex-row items-center space-x-6">
         <a href="/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Home</a>
 
-        <div className="relative group">
+        <div 
+          className="relative" 
+          onMouseEnter={handleMouseEnter} 
+          onMouseLeave={handleMouseLeave}
+        >
           <button className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">TBILL</button>
-          <div className="absolute hidden z-50 group-hover:block bg-white text-black mt-1 rounded shadow-lg border border-gray-200">
-            <a href="/tbill" className="block px-4 py-2 hover:bg-gray-100">Buy</a>
-            <a href="/redeem" className="block px-4 py-2 hover:bg-gray-100">Redeem</a>
-          </div>
+          {isOpenTBILLButton && (
+            <div className="absolute z-50 bg-white text-black mt-1 rounded shadow-lg border border-gray-200">
+              <a href="/tbill" className="block px-4 py-2 hover:bg-gray-100">Buy</a>
+              <a href="/redeem" className="block px-4 py-2 hover:bg-gray-100">Redeem</a>
+            </div>
+          )}
         </div>
 
         <a href="/blog/" className="hover:text-white hover:bg-black p-2 rounded-2xl transition duration-300">Blog</a>
