@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const post = await Astro.glob("./post-3.md");
+---
+
+<BaseLayout>
+  {post.map(({ Content, frontmatter }) => (
+    <>
+       <div class="h-screen px-10  ">
+      <h1 class="text-2xl text-center font-bold mb-4">{frontmatter.title}</h1>
+      <img src={frontmatter.image.url} alt={frontmatter.image.alt} class="mb-4 mx-auto rounded-3xl shadow-md" />
+      <Content />
+ 
+    </div>
+    </>
+  ))}
+</BaseLayout>

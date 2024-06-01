@@ -12,42 +12,30 @@ const pageTitle = "";
     <h2 class="text-2xl font-bold text-gray-600 mb-4">
       Convert USDC into TBILL Token (Buy Token)
     </h2>
-    <p class="mt-8 text-gray-400">
-      Images represent the buy and redeem sides of a token transaction process,
-      involving the conversion between USDC (a USD-backed stablecoin) and TBILL
-      tokens.
-    </p>
 
     <img src={BuySide.src} class="rounded-3xl" alt="Buy Token " />
     <!-- <img src="https://example.com/buy-side.png" alt="Buy Token" class="mx-auto mb-4"> -->
     <ol class="list-decimal py-8 px-4 pl-6">
       <li class="mb-2">
-        <span class="font-bold">Investor:</span> The investor deposits USDC to initiate
-        the process.
+        <span class="font-bold">Investor:</span> The investor sends USDC to initiate the process.
       </li>
       <li class="mb-2">
-        <span class="font-bold">TBILL Smart Contract:</span> The TBILL smart contract
-        mints new TBILL tokens based on the USDC amount.
+        <span class="font-bold">Token Issuer:</span> Token Issuer receives USDC to buy T-bills.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Bond Market:</span> The USDC is converted into TBILL,
-        which represents the bond market.
+        <span class="font-bold">Treasury Account:</span> The USDC is converted into US Dollars.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Off Chain Custody Vault:</span> The TBILL is then
-        converted back to USDC and held in an off-chain custody vault.
+        <span class="font-bold">Bond Market:</span> T-bills are bought from the secondary market using US Dollars.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Token Issuer:</span> The Token Issuer receives the
-        USDC.
+        <span class="font-bold">Off Chain Custody Vault:</span> T-bills are stored safely in an off-chain custody vault.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Treasury Account:</span> The USDC is held in the
-        Treasury Account.
+        <span class="font-bold">TBILL Smart Contract:</span> The TBILL smart contract mints TBILL tokens based on USDC to USD conversion amount.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Investor:</span> The investor receives the TBILL
-        tokens.
+        <span class="font-bold">Investor:</span> The investor receives the TBILL tokens.
       </li>
     </ol>
   </div>
@@ -59,31 +47,25 @@ const pageTitle = "";
     <!-- <img src="https://example.com/redeem-side.png" alt="Redeem Token" class="mx-auto mb-4"> -->
     <ol class="list-decimal py-8 px-4 pl-6">
       <li class="mb-2">
-        <span class="font-bold">Investor:</span> The investor sends the TBILL tokens
-        to initiate the redemption process.
+        <span class="font-bold">Investor:</span> The investor sends the TBILL tokens to initiate the redemption process.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Token Issuer:</span> The Token Issuer receives the
-        TBILL tokens.
+        <span class="font-bold">Token Issuer:</span> The Token Issuer receives the TBILL tokens.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Treasury Account:</span> The TBILL tokens are held
-        in the Treasury Account.
+        <span class="font-bold">Off Chain Custody Vault:</span> Sell T-bills in secondary market.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Off Chain Custody Vault:</span> The USDC is sent
-        from the off-chain custody vault.
+        <span class="font-bold">Bond Market:</span> T-bills are sold in exchange for US Dollars.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Bond Market:</span> The TBILL is converted back to
-        USDC, representing the bond market.
+        <span class="font-bold">Treasury Account:</span> The US Dollars are converted into USDC.
       </li>
       <li class="mb-2">
-        <span class="font-bold">TBILL Smart Contract:</span> The TBILL smart contract
-        burns the TBILL tokens to facilitate the redemption.
+        <span class="font-bold">TBILL Smart Contract:</span> The TBILL smart contract burns TBILL tokens.
       </li>
       <li class="mb-2">
-        <span class="font-bold">Investor:</span> The investor receives the USDC.
+        <span class="font-bold">Investor:</span> The investor receives USDC from the Issuer.
       </li>
     </ol>
   </div>

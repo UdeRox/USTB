@@ -1,15 +1,58 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const props = Astro.props;
-
-const pageTitle = "";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle="">
+  <div class="min-h-[80vh] bg-gray-200 py-12">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-8 text-center">Blogs </h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <a
+          href="/posts/post-1/"
+          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+        >
+          <div class="p-6">
+           <img src="https://assets.norbr.io/image/logo/USDc_whitebg.svg" class="rounded-3xl"alt="USDC">
+            <h2 class="text-xl font-bold mb-2">Adding USDC Tokens into Wallet</h2>
+            <p class="text-gray-600 mb-4">Learn how to add USDC tokens to your wallet in a few simple steps.</p>
+            <div class="flex items-center">
+              <!-- <span class="text-gray-500 mr-2">By</span> -->
+              <!-- <span class="text-gray-700 font-semibold">Author Name</span> -->
+            </div>
+          </div>
+        </a>
 
-<div class="h-screen">
-    Blog Page
-</div>
+        <a
+          href="/posts/post-2/"
+          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+        >
+          <div class="p-6">
+            <img src="https://coinstatics.com/wp-content/uploads/2022/07/USDC-To-MetaMask-900x500.jpg" class="rounded-3xl"alt="USDC">
+            <h2 class="text-xl font-bold mb-2">Importing USDC Tokens into MetaMask Wallet for the First Time</h2>
+            <p class="text-gray-600 mb-4">Step-by-step guide on importing USDC tokens into MetaMask for the first time.</p>
+            <div class="flex items-center">
+              <!-- <span class="text-gray-500 mr-2">By</span> -->
+              <!-- <span class="text-gray-700 font-semibold">Author Name</span> -->
+            </div>
+          </div>
+        </a>
 
+        <a
+          href="/posts/post-3/"
+          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+        >
+          <div class="p-6">
+            <img src="https://firebasestorage.googleapis.com/v0/b/chainlinkproject-57533.appspot.com/o/Screenshot%202024-06-01%20213426.png?alt=media&token=b36934ee-96fb-4d3a-8778-00c820421f9e" class="rounded-3xl"alt="USDC">
+
+            <h2 class="text-xl font-bold mb-2">Importing TBILL Tokens into MetaMask Wallet for the First Time</h2>
+            <p class="text-gray-600 mb-4">Simple instructions to import TBILL tokens into your MetaMask wallet.</p>
+            <div class="flex items-center">
+              <!-- <span class="text-gray-500 mr-2">By</span> -->
+              <!-- <span class="text-gray-700 font-semibold">Author Name</span> -->
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
