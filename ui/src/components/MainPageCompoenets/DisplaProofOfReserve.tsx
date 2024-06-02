@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 const DisplaProofOfReserve = () => {
-  const [maxUSDSupply, setMaxUSDSupply] = useState(null);
+  const [maxUSDSupply, setMaxUSDSupply] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +18,7 @@ const DisplaProofOfReserve = () => {
     fetchData();
   }, []);
 
-  const formatNumber = (value) => {
+  const formatNumber = (value: number) => {
     const formattedNumber = value.toLocaleString("en-US", {
       minimumFractionDigits: 3,
       maximumFractionDigits: 3,
@@ -32,7 +32,7 @@ const DisplaProofOfReserve = () => {
   return (
     <>
       <div className="text-3xl text-green-600 font-bold">
-       $ {maxUSDSupply ? formatNumber(maxUSDSupply) : ""}
+        ${maxUSDSupply !== null ? formatNumber(maxUSDSupply) : ""}
       </div>
     </>
   );
