@@ -2,50 +2,38 @@ import { useEffect, useState } from "react";
 import Web3 from "web3";
 import contractABI from "../../abi/AuthorizeContract.json";
 
-// declare global {
-//   interface Window {
-//     ethereum: any;
-//   }
-// }
-
 const DisplayAvailableUSD = () => {
   const [maxUSDSupply, setMaxUSDSupply] = useState<unknown>(null);
   const [interestRate, setInterestRate] = useState<unknown>(null);
-  //TODO: move to a global  variable
-  //   const contractAddress = "0xE1C149cD6999A50E3Eb186d277DfbFC8F2C5Bb3C";
   const contractAddress = import.meta.env.PUBLIC_AUTHORIZED_CONTRACT;
 
   useEffect(() => {
-    const fetchMaxSupply = async () => {
-      if (window.ethereum) {
-        try {
+    const fetchData = async () => {
+      try {
+        const apiResponse = await fetch("https://ustb-api-backend.vercel.app/api/portfolio/");
+        const data = await apiResponse.json();
+        setMaxUSDSupply(data.portfolioUsd);
+
+        if (window.ethereum) {
           const web3 = new Web3(window.ethereum);
           const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-          const maxUSDinVault = await contract.methods.getMaxUSDSupply().call();
-          setMaxUSDSupply(maxUSDinVault);
-
           const interestRate: any = await contract.methods.getInterest().call();
-          //   setInterestRate(interestRate);
           setInterestRate(parseInt(interestRate) / 100);
-        } catch (err) {
-          //TODO: error handling
-          console.error("Error fetching baseCurrencyContract:", err);
+        } else {
+          console.error("MetaMask is not installed");
         }
-      } else {
-        //TODO error handling
-        console.error("MetaMask is not installed");
+      } catch (err) {
+        console.error("Error fetching data:", err);
       }
     };
 
-    fetchMaxSupply();
+    fetchData();
   }, []);
 
   return (
     <>
-      {`Max USD available : ${
-        maxUSDSupply ?? ""
-      }, Interest rate : ${interestRate}%`}
+      {`Max USD available : ${maxUSDSupply ?? ""}, Interest rate : ${interestRate}%`}
     </>
   );
 };
