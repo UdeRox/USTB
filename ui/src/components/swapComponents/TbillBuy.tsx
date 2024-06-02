@@ -47,6 +47,7 @@ const BuyTBills = () => {
 
   const authorizeContractAddress = import.meta.env.PUBLIC_AUTHORIZED_CONTRACT;
   const mockUSDCAddress = import.meta.env.PUBLIC_MOCK_USDC_ADDRESS;
+  const actualUSDCAddress = import.meta.env.PUBLIC_USDC_ADDRESS;
 
   //  const  tbillContractAddress = import.meta.env.PUBLIC_TBILL_ADDRESS;
   const tbillContractAddress = "0x47c38380d885CF94ac0a602531bdD55E29A584Ec";
@@ -76,13 +77,13 @@ const BuyTBills = () => {
           );
           setAuthorizeContractInstance(authorizeContract);
 
-          const mockUSDCContract = new web3Instance.eth.Contract(
+          const actualUSDCContract = new web3Instance.eth.Contract(
             mockUSDCABI as AbiItem[],
-            mockUSDCAddress
+            actualUSDCAddress
           );
-          setMockUSDCInstance(mockUSDCContract);
+          setMockUSDCInstance(actualUSDCContract);
           // Fetch balances initially
-          fetchBalances(accounts[0], authorizeContract, mockUSDCContract, tbillContractAddress);
+          fetchBalances(accounts[0], authorizeContract, actualUSDCContract, tbillContractAddress);
 
         } catch (error) {
           console.error("Error initializing Web3:", error);
@@ -98,15 +99,15 @@ const BuyTBills = () => {
   }, []);
 
 
-  // const fetchBalances = async (account: string, web3Instance: Web3, authorizeContract: any, mockUSDCContract: any) => {
+  // const fetchBalances = async (account: string, web3Instance: Web3, authorizeContract: any, actualUSDCContract: any) => {
 
-  const fetchBalances = async (account: string, authorizeContract: any, mockUSDCContract: any, tbillContractAddress: any) => {
-    if (!authorizeContract || !mockUSDCContract || !tbillContractAddress) return;
+  const fetchBalances = async (account: string, authorizeContract: any, actualUSDCContract: any, tbillContractAddress: any) => {
+    if (!authorizeContract || !actualUSDCContract || !tbillContractAddress) return;
 
     try {
       // Inside the fetchBalances function
 
-      const usdcBalanceInBaseUnits = await mockUSDCContract.methods.balanceOf(account).call();
+      const usdcBalanceInBaseUnits = await actualUSDCContract.methods.balanceOf(account).call();
       const usdcBalance = parseFloat(usdcBalanceInBaseUnits) / 10 ** 6;
       setUSDCBalance(usdcBalance);
 
