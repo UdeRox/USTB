@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // In-memory data store
-let portfolio = 1000.0; // Initial portfolio value in USD
+let portfolio = 10000000.0; // Initial portfolio value in USD
 
 app.use(cors()); // Enable CORS for all routes
 app.use(bodyParser.json());
