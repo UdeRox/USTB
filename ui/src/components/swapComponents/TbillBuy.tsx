@@ -10,7 +10,7 @@ import { Toaster, toast } from "react-hot-toast";
 // Import the contract ABIs
 import authorizeContractABI from "../../abi/AuthorizeContract.json";
 import mockUSDCABI from "../../abi/MockUSDC.json";
-import TBill from "../../abi/TBill.json";
+import TBillABI from "../../abi/TBill.json";
 
 
 const BuyTBills = () => {
@@ -21,7 +21,7 @@ const BuyTBills = () => {
     useState<any>(null);
   const [mockUSDCInstance, setMockUSDCInstance] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+const [TBillContract, setTBillContract] = useState<any>(null);
   const [BuyTibillModal, setBuyTibillModal] = useState<boolean>(false);
 
   const [TransactionSuccess, setTransactionSuccess] = useState(false);
@@ -82,8 +82,17 @@ const BuyTBills = () => {
             actualUSDCAddress
           );
           setMockUSDCInstance(actualUSDCContract);
+
+          const Tbill_Contract = new web3Instance.eth.Contract(
+            TBillABI as AbiItem[],
+            tbillContractAddress
+          );
+          setTBillContract(Tbill_Contract);
+
+
+
           // Fetch balances initially
-          fetchBalances(accounts[0], authorizeContract, actualUSDCContract, tbillContractAddress);
+          fetchBalances(accounts[0], authorizeContract, actualUSDCContract, Tbill_Contract);
 
         } catch (error) {
           console.error("Error initializing Web3:", error);
@@ -101,8 +110,8 @@ const BuyTBills = () => {
 
   // const fetchBalances = async (account: string, web3Instance: Web3, authorizeContract: any, actualUSDCContract: any) => {
 
-  const fetchBalances = async (account: string, authorizeContract: any, actualUSDCContract: any, tbillContractAddress: any) => {
-    if (!authorizeContract || !actualUSDCContract || !tbillContractAddress) return;
+  const fetchBalances = async (account: string, authorizeContract: any, actualUSDCContract: any, Tbill_Contract: any) => {
+    if (!authorizeContract || !actualUSDCContract || !Tbill_Contract) return;
 
     try {
       // Inside the fetchBalances function
@@ -111,8 +120,8 @@ const BuyTBills = () => {
       const usdcBalance = parseFloat(usdcBalanceInBaseUnits) / 10 ** 6;
       setUSDCBalance(usdcBalance);
 
-      const tbillBalanceInBaseUnits = await tbillContractAddress.methods.balanceOf(account).call();
-      const tbillBalance = parseFloat(tbillBalanceInBaseUnits) / 10 ** 6;
+      const tbillBalanceInBaseUnits = await Tbill_Contract.methods.balanceOf(account).call();
+      const tbillBalance = parseFloat(tbillBalanceInBaseUnits) / 10 ** 18;
       console.log(tbillBalance);
       setTBILLBalance(tbillBalance);
 
