@@ -1,16 +1,16 @@
 ---
-const props = Astro.props
+import DisplaProofOfReserve from "./DisplaProofOfReserve"; // Import the component with the new name
+const props = Astro.props;
 ---
 
-<div class="bg-gray-200 p-8 rounded-lg  shadow-lg">
+<div class="bg-gray-200 p-8 rounded-lg shadow-lg">
   <h2 class="text-3xl font-bold text-center mb-8 text-gray-600">TBILL Token Supply and Net Reserves</h2>
   <div class="flex justify-center flex-wrap gap-10">
     <div class="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center ">
       <div class="flex flex-row items-center gap-16 mb-4">
         <span class="text-sm font-semibold text-gray-400">Total TBILL Supply</span>
         <a href="https://sepolia.etherscan.io/token/0x47c38380d885CF94ac0a602531bdD55E29A584Ec" class="text-blue-500 hover:underline flex items-center">
-          Etherscan 
-    
+          Etherscan
           <svg xmlns="http://www.w3.org/2000/svg" width="1.78em" height="1em" viewBox="0 0 16 9" {...props}>
             <path fill="currentColor" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
             <path fill="currentColor" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
@@ -31,17 +31,17 @@ const props = Astro.props
           </svg>
         </a>
       </div>
-      <span class="text-3xl text-green-500 font-bold"> $9,00,000.000 </span>
+      {/* Use the DisplaProofOfReserve component here */}
+      <DisplaProofOfReserve client:load />
     </div>
   </div>
 
-<div class="flex justify-center py-10">
-  <a
-  href="flow"
-  class="inline-block px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 transition duration-300 grayscale"
->
-  Flow Chart For Buy and Redeem Tokens
-</a>
-
-</div>
+  <div class="flex justify-center py-10">
+    <a
+      href="flow"
+      class="inline-block px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 transition duration-300 grayscale"
+    >
+      Flow Chart For Buy and Redeem Tokens
+    </a>
+  </div>
 </div>
