@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 // import Loader from "./Loader";
 import ButtonSpinner from "./ButtonSpinner";
+import axios from "axios";
 
 import Web3 from "web3";
 import type { AbiItem } from "web3-utils";
@@ -33,7 +34,7 @@ const [TBillContract, setTBillContract] = useState<any>(null);
 
   const [usdcBalance, setUSDCBalance] = useState<number>(0);
   const [tbillBalance, setTBILLBalance] = useState<number>(0);
-
+  const [portfolio, setPortfolio] = useState({ portfolioUsd: 0, tbillValue: 0 });
 
 
   // Function to calculate 95% of the amount value
@@ -132,6 +133,8 @@ const [TBillContract, setTBillContract] = useState<any>(null);
   };
 
 
+
+
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(event.target.value);
   };
@@ -165,7 +168,20 @@ const [TBillContract, setTBillContract] = useState<any>(null);
       setTransactionHash(receipt.transactionHash); // Set the transaction hash
 
       toast.success("TBills purchased successfully");
+
+
+
       setIsBuyTbill(false);
+
+
+      await axios.post('https://ustb-api-backend.vercel.app/api/buy/', {
+        buyAmount: parseFloat(amount),
+        userAddress: accounts[0],
+      });
+
+      fetchBalances(accounts[0], authorizeContractInstance, mockUSDCInstance, TBillContract);
+
+
     } catch (error) {
       setTransactionSuccess(true);
       console.error("Error in approve and buy process:", error);
@@ -404,9 +420,6 @@ const [TBillContract, setTBillContract] = useState<any>(null);
       ) : (
         ""
       )}
-
-
-
     </div>
   );
 };

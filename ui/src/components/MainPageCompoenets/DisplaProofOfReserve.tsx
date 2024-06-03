@@ -9,7 +9,7 @@ const DisplaProofOfReserve = () => {
       try {
         const apiResponse = await fetch("https://ustb-api-backend.vercel.app/api/portfolio/");
         const data = await apiResponse.json();
-        setMaxUSDSupply(data.portfolioUsd);
+        setMaxUSDSupply(data.portfolioUsd  +  data.tbillValue );
       } catch (err) {
         console.error("Error fetching data:", err);
       }
